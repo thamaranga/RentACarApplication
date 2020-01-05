@@ -1,4 +1,4 @@
-package com.hasitha.rentcloud.model;
+package com.hasitha.rentcloud.model.customer;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

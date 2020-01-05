@@ -1,4 +1,4 @@
-package com.hasitha.rentcloud.model;
+package com.hasitha.rentcloud.model.vehicle;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,8 +11,7 @@ public class Vehicle {
 
     @Id
     @GeneratedValue
-    private
-    int id;
+    private int id;
     private String make;
     private String model;
     private String type;
