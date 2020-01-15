@@ -17,39 +17,25 @@ public class CustomerController {
     CustomerService customerService;
 
     @PostMapping(value = "/customer")
-    public ResponseEntity<?> saveCustomer(@RequestBody Customer customer){
-        Customer cus=customerService.save(customer);
-        if(cus==null){
-            return new ResponseEntity<String>("Somethignwent wrong while saving data", HttpStatus.INTERNAL_SERVER_ERROR);
-        }else{
-            return new ResponseEntity<Customer>(cus, HttpStatus.CREATED);
-        }
+    public Customer saveCustomer(@RequestBody Customer customer){
+        return customerService.save(customer);
+
 
 
     }
 
     @GetMapping(value = "/customer/{id}")
-    public ResponseEntity<?> fetchCustomerById(@PathVariable int id){
-        Customer customer=customerService.fetchCustomerById(id);
-        if(customer!=null){
-            return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+    public Customer fetchCustomerById(@PathVariable int id){
+        System.out.println("hi..");
+        return customerService.fetchCustomerById(id);
 
-
-        }else{
-            return new ResponseEntity<String>("No data foud for id "+ id, HttpStatus.NOT_FOUND);
-
-        }
 
     }
 
     @GetMapping(value = "/customer")
-    public ResponseEntity<?> fetchAllCustomers(){
-        List<Customer> customers= customerService.fetchAllCustomers();
-        if(customers!=null && !customers.isEmpty()){
-            return new ResponseEntity<List<Customer>>(customers, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<String>("No data foud", HttpStatus.NOT_FOUND);
-        }
+    public List<Customer> fetchAllCustomers(){
+        return customerService.fetchAllCustomers();
+
 
 
     }
