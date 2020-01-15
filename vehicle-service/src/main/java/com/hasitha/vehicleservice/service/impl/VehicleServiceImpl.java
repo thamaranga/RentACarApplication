@@ -1,7 +1,7 @@
 package com.hasitha.vehicleservice.service.impl;
 
-import com.hasitha.rentcloud.model.Customer;
-import com.hasitha.rentcloud.model.Vehicle;
+
+import com.hasitha.rentcloud.model.vehicle.Vehicle;
 import com.hasitha.vehicleservice.repository.VehicleRepository;
 import com.hasitha.vehicleservice.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;

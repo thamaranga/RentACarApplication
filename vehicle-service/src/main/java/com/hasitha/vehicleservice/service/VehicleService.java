@@ -1,7 +1,6 @@
 package com.hasitha.vehicleservice.service;
 
-import com.hasitha.rentcloud.model.Customer;
-import com.hasitha.rentcloud.model.Vehicle;
+import com.hasitha.rentcloud.model.vehicle.Vehicle;
 
 import java.util.List;
 

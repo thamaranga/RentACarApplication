@@ -1,8 +1,8 @@
 package com.hasitha.vehicleservice.controller;
 
 
-import com.hasitha.rentcloud.model.Customer;
-import com.hasitha.rentcloud.model.Vehicle;
+
+import com.hasitha.rentcloud.model.vehicle.Vehicle;
 import com.hasitha.vehicleservice.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,40 +19,18 @@ public class VehicleController {
     VehicleService vehicleService;
 
     @PostMapping(value = "/vehicle")
-    public ResponseEntity<?> saveVehicle(@RequestBody Vehicle vehicle){
-        Vehicle veh=vehicleService.save(vehicle);
-        if(veh==null){
-            return new ResponseEntity<String>("Somethignwent wrong while saving data", HttpStatus.INTERNAL_SERVER_ERROR);
-        }else{
-            return new ResponseEntity<Vehicle>(veh, HttpStatus.CREATED);
-        }
-
-
+    public Vehicle saveVehicle(@RequestBody Vehicle vehicle){
+        return vehicleService.save(vehicle);
     }
 
     @GetMapping(value = "/vehicle/{id}")
-    public ResponseEntity<?> fetchVehicleById(@PathVariable int id){
-        Vehicle vehicle=vehicleService.fetchVehicleById(id);
-        if(vehicle!=null){
-            return new ResponseEntity<Vehicle>(vehicle, HttpStatus.OK);
-
-
-        }else{
-            return new ResponseEntity<String>("No data foud for id "+ id, HttpStatus.NOT_FOUND);
-
-        }
-
+    public Vehicle fetchVehicleById(@PathVariable int id){
+        return vehicleService.fetchVehicleById(id);
     }
 
     @GetMapping(value = "/vehicle")
-    public ResponseEntity<?> fetchAllVehicles(){
-        List<Vehicle> vehicles= vehicleService.fetchAllVehicles();
-        if(vehicles!=null && !vehicles.isEmpty()){
-            return new ResponseEntity<List<Vehicle>>(vehicles, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<String>("No data foud", HttpStatus.NOT_FOUND);
-        }
-
+    public List<Vehicle> fetchAllVehicles(){
+        return vehicleService.fetchAllVehicles();
 
     }
 
