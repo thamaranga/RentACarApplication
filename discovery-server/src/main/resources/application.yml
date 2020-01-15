@@ -1,0 +1,9 @@
+#By setting below two properties as false we can stop this service  trying to register with itself as a client.
+#Setting below two properties as false is mandatory for a discovery service.
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+#8761 is defalut port for discovery server.
+server:
+  port: 8761
