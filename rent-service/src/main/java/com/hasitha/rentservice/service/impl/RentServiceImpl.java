@@ -3,6 +3,8 @@ package com.hasitha.rentservice.service.impl;
 import com.hasitha.rentcloud.model.customer.Customer;
 import com.hasitha.rentcloud.model.rent.Rent;
 import com.hasitha.rentcloud.model.vehicle.Vehicle;
+import com.hasitha.rentservice.hystrix.CustomerCommand;
+import com.hasitha.rentservice.hystrix.VehicleCommand;
 import com.hasitha.rentservice.model.FullRent;
 import com.hasitha.rentservice.repository.RentRepository;
 import com.hasitha.rentservice.service.RentService;
@@ -59,8 +61,8 @@ public class RentServiceImpl implements RentService {
         return  null;
        }
        }catch(Exception ex){
-           ex.printStackTrace();
-           //System.out.println(ex.printStackTrace());
+
+           System.out.println(ex.getMessage());
        }
         return  null;
     }
@@ -68,14 +70,18 @@ public class RentServiceImpl implements RentService {
 
     private Vehicle findVehicleById(int vehicleId) throws Exception{
         //Vehicle vehicle=restTemplate.getForObject("http://localhost:9192/services/vehicle/"+vehicleId,Vehicle.class);
-        Vehicle vehicle=restTemplate.getForObject("http://vehicle/services/vehicle/"+vehicleId,Vehicle.class);
+        //Vehicle vehicle=restTemplate.getForObject("http://vehicle/services/vehicle/"+vehicleId,Vehicle.class);
+        VehicleCommand vehicleCommand= new VehicleCommand(restTemplate,vehicleId);
+        Vehicle vehicle=vehicleCommand.execute();
         return vehicle;
 
     }
 
     private Customer findCustomerById(int customerId) throws Exception{
         // Customer customer=restTemplate.getForObject("http://localhost:9191/services/customer/"+customerId,Customer.class);
-        Customer customer=restTemplate.getForObject("http://customer/services/customer/"+customerId,Customer.class);
+        //Customer customer=restTemplate.getForObject("http://customer/services/customer/"+customerId,Customer.class);
+        CustomerCommand customerCommand= new CustomerCommand(restTemplate,customerId);
+        Customer customer=customerCommand.execute();
         return customer;
 
     }
