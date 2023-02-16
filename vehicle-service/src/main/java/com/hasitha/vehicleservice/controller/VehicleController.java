@@ -4,6 +4,8 @@ package com.hasitha.vehicleservice.controller;
 
 import com.hasitha.rentcloud.model.vehicle.Vehicle;
 import com.hasitha.vehicleservice.service.VehicleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value="/services")
 public class VehicleController {
+    Logger logger= LoggerFactory.getLogger(VehicleController.class);
 
     @Autowired
     VehicleService vehicleService;
@@ -25,6 +28,7 @@ public class VehicleController {
 
     @GetMapping(value = "/vehicle/{id}")
     public Vehicle fetchVehicleById(@PathVariable int id){
+        logger.info("Inside fetchVehicleById method of VehicleController");
         return vehicleService.fetchVehicleById(id);
     }
 

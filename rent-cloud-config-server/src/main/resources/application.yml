@@ -8,3 +8,7 @@ spring:
           uri: https://github.com/thamaranga/RentACarApplicationConfigurations
           search-paths:
             - 'service-config/*service'
+#This means my config store is local (Configurations are stored  locally.)
+#spring:
+  #profiles:
+    #active: native

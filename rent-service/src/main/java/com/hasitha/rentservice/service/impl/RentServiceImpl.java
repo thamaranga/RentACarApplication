@@ -3,12 +3,16 @@ package com.hasitha.rentservice.service.impl;
 import com.hasitha.rentcloud.model.customer.Customer;
 import com.hasitha.rentcloud.model.rent.Rent;
 import com.hasitha.rentcloud.model.vehicle.Vehicle;
+import com.hasitha.rentservice.controller.RentController;
 import com.hasitha.rentservice.hystrix.CustomerCommand;
 import com.hasitha.rentservice.hystrix.VehicleCommand;
 import com.hasitha.rentservice.model.FullRent;
 import com.hasitha.rentservice.repository.RentRepository;
 import com.hasitha.rentservice.service.RentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,10 +21,13 @@ import java.util.Optional;
 @Service
 public class RentServiceImpl implements RentService {
 
+    Logger logger= LoggerFactory.getLogger(RentServiceImpl.class);
+
     @Autowired
     RentRepository rentRepository;
 
     @Autowired
+    @LoadBalanced
     RestTemplate restTemplate;
 
 
@@ -41,6 +48,7 @@ public class RentServiceImpl implements RentService {
 
     @Override
     public FullRent fetchFullRentDetailsById(int id) {
+        logger.info("Inside fetchFullRentDetailsById method of RentServiceImpl");
         FullRent fullRent= new FullRent();
        Rent rent= this.fetchRentById(id);
        try{

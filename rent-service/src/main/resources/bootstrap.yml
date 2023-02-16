@@ -5,8 +5,8 @@ spring:
   application:
     name: rent
 #
-server:
-  port: 9193
+#server:
+  #port: 9193
 #
 #eureka:
 #  client:

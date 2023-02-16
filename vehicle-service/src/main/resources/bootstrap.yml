@@ -1,3 +1,5 @@
+#If there are any properties need to load before loading the the application.yml file then we need to include those
+#properties inside bootstrap.yml file.
 spring:
   cloud:
     config:
